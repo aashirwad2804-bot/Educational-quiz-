@@ -405,6 +405,54 @@ function startQuiz(chapter) {
 }
 
 
+function showQuestion() {
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("question-number")
+        .textContent =
+        `Question ${currentQuestion + 1}/${questions.length}`;
+
+    document.getElementById("question")
+        .textContent = q.question;
+
+    const options =
+        document.getElementById("options");
+
+    options.innerHTML = "";
+
+    q.options.forEach((option, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+        button.textContent = option;
+
+        button.onclick = function () {
+
+            document.querySelectorAll(".option")
+                .forEach(x =>
+                    x.classList.remove("selected")
+                );
+
+            button.classList.add("selected");
+
+            selectedAnswer = index;
+        };
+
+        options.appendChild(button);
+    });
+
+    selectedAnswer = null;
+
+    document.getElementById("progress")
+        .style.width =
+        ((currentQuestion + 1) /
+        questions.length * 100) + "%";
+}
+
+
 function showSubjects() {
     openExam(currentExam);
 }
