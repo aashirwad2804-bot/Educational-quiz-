@@ -380,6 +380,19 @@ function startQuiz(chapter) {
 
     currentChapter = chapter;
 
+    questions =
+        questionBank[currentExam]
+        [currentSubject]
+        [chapter];
+
+    if (!questions || questions.length === 0) {
+        alert("No questions available for this chapter yet.");
+        return;
+    }
+
+    currentQuestion = 0;
+    score = 0;
+
     hideAll();
 
     document.getElementById("quiz-screen")
@@ -388,23 +401,7 @@ function startQuiz(chapter) {
     document.getElementById("quiz-subject")
         .textContent = chapter;
 
-    document.getElementById("question-number")
-        .textContent = "Question 1";
-
-    document.getElementById("question")
-        .textContent =
-        "Your quiz for " + chapter + " will appear here.";
-
-    document.getElementById("options").innerHTML = `
-        <div class="option">Option A</div>
-        <div class="option">Option B</div>
-        <div class="option">Option C</div>
-        <div class="option">Option D</div>
-    `;
-
-    document.getElementById("progress")
-        .style.width = "25%";
-
+    showQuestion();
 }
 
 
