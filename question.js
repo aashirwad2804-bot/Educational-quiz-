@@ -1,11 +1,8 @@
 const questionBank = {
-
     neet: {
-
         biology: {
-
             "Cell: The Unit of Life": [
-
+                // questions here
                 {
                     question: "The basic structural and functional unit of life is:",
                     options: [
